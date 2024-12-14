@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Room Horror</title>
+  <style>
+    /* Corps et arrière-plan */
+    body {
+      background: url('https://i.ibb.co/nPBsVKF/t-l-chargement-6.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: red;
+      font-family: 'Creepster', sans-serif;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Pièce qui tourne améliorée */
+    .coin-container {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: rotate(0deg);
+      animation: spin 3s linear infinite, blood-effect 1s alternate infinite;
+    }
+
+    .coin {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, darkred, black);
+      box-shadow: 0 0 15px red, 0 0 25px darkred;
+      animation: spin 5s linear infinite, blood-effect 1s alternate infinite;
+    }
+
+    .coin-value {
+      font-size: 1.5em;
+      color: crimson;
+      text-shadow: 0 0 10px darkred, 0 0 15px red, 0 0 30px black;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotateY(0deg);
+      }
+      100% {
+        transform: rotateY(360deg);
+      }
+    }
+
+    @keyframes blood-effect {
+      0% {
+        color: red;
+        text-shadow: 0 0 10px darkred, 0 0 20px red, 0 0 25px black;
+      }
+      50% {
+        color: crimson;
+        text-shadow: 0 0 5px darkred, 0 0 15px red, 0 0 35px black;
+      }
+      100% {
+        color: darkred;
+        text-shadow: 0 0 20px black, 0 0 30px crimson, 0 0 40px red;
+      }
+    }
+
+    /* Texte principal avec effet sanglant */
+    h1, p {
+      text-shadow: 2px 2px 5px black, 0 0 10px red, 0 0 20px darkred;
+      animation: flicker 1.5s infinite alternate, blood-flicker 0.5s alternate infinite;
+    }
+
+    h1 {
+      font-size: 3em;
+      font-weight: bold;
+    }
+
+    .value-row {
+      font-size: 1.5em;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+      }
+      20%, 24%, 55% {
+        opacity: 0.1;
+      }
+    }
+
+    @keyframes blood-flicker {
+      0%, 100% {
+        color: red;
+        text-shadow: 0 0 10px darkred, 0 0 15px red, 0 0 30px black;
+      }
+      50% {
+        color: crimson;
+        text-shadow: 0 0 5px darkred, 0 0 15px red, 0 0 25px black;
+      }
+    }
+
+    /* Champ pour saisir le code avec effet sanglant */
+    form {
+      margin: 20px 0;
+    }
+
+    input[type="text"] {
+      background: black;
+      border: 2px solid crimson;
+      color: red;
+      padding: 10px;
+      font-size: 1em;
+      text-align: center;
+      text-shadow: 0 0 5px red;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px red;
+    }
+
+    input[type="submit"] {
+      background: crimson;
+      border: none;
+      color: black;
+      font-weight: bold;
+      padding: 10px 20px;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px red, 0 0 20px darkred;
+      animation: pulse 2s infinite;
+    }
+
+    input[type="submit"]:hover {
+      box-shadow: 0 0 20px white, 0 0 30px red;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Lien en bas avec effet sinistre */
+    .link {
+      margin-top: 30px;
+    }
+
+    .link a {
+      color: red;
+      font-size: 1.2em;
+      text-decoration: none;
+      text-shadow: 0 0 5px red, 0 0 10px darkred;
+    }
+
+    .link a:hover {
+      text-shadow: 0 0 20px white, 0 0 30px red;
+    }
+  </style>
+</head>
+<body>
+  <!-- Pièce et valeur -->
+  <div class="coin-container">
+    <div class="coin"></div>
+    <div class="coin-value">0 Ranler</div>
+  </div>
+
+  <!-- Contenu principal -->
+  <h1>WATCH ONLY</h1>
+  <p class="value-row">0.22 Ranler</p>
+  <p class="value-row">ENTER = 0.574 Ranler</p>
+  <p class="value-row">MASTER = 7.578 Ranler</p>
+  <p class="value-row">or leave...</p>
+
+  <!-- Formulaire -->
+  <form id="codeForm">
+    <input type="text" id="codeInput" placeholder="Enter the secret code">
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <!-- Lien pour rediriger -->
+  <div class="link">
+    <p>If you dare, contact the admin...</p>
+    <a href="#">PLACEHOLDER_FOR_ADMIN_LINK</a>
+  </div>
+
+  <script>
+    // Gestion du formulaire
+    const form = document.getElementById('codeForm');
+    const input = document.getElementById('codeInput');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const code = input.value.trim();
+
+      if (code === 'wpd78912//@wpd.com') {
+        // Redirection vers une autre page
+        window.location.href = "PLACEHOLDER_FOR_YOUR_LINK";
+      } else {
+        alert('Wrong code! Try again or leave...');
+      }
+    });
+  </script>
+</body>
+</html>
